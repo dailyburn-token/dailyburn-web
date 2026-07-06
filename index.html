@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -169,10 +169,10 @@
       DAILYBURN <span class="ticker-pill">$DBURN</span>
     </div>
     <div class="navlinks">
-      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#how-it-works">How it works</a>
       <a href="#tokenomics">Tokenomics</a>
-      <a href="#verificar">Verificar</a>
-      <a href="#riesgos">Riesgos</a>
+      <a href="#verify">Verify</a>
+      <a href="#risks">Risks</a>
     </div>
   </div>
 </nav>
@@ -183,12 +183,12 @@
       <svg viewBox="0 0 64 64" class="logo-hero-icon"><use href="#logoMark"/></svg>
       <div class="logo-hero-word">DAILYBURN<span>$DBURN</span></div>
     </div>
-    <div class="eyebrow"><span class="dot"></span> EN VIVO EN SOLANA · PUMP.FUN</div>
-    <h1 class="hero-title">Un millón de tokens.<br>Quemados. <span>Cada día.</span></h1>
-    <p class="hero-sub">126 días de quema diaria automática, bloqueada en un contrato público que nadie puede pausar, cambiar ni cancelar. Ni siquiera el creador. Compruébalo tú mismo, no confíes en nuestra palabra.</p>
+    <div class="eyebrow"><span class="dot"></span> LIVE ON SOLANA · PUMP.FUN</div>
+    <h1 class="hero-title">Two million tokens.<br>Burned. <span>Every day.</span></h1>
+    <p class="hero-sub">126 days of automated daily burning, locked in a public contract that no one can pause, change, or cancel. Not even the creator. Verify it yourself — don't trust our word.</p>
     <div class="cta-row">
-      <a href="https://pump.fun/coin/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump" id="btnBuy" class="btn btn-primary" target="_blank" rel="noopener">Comprar en pump.fun ↗</a>
-      <a href="#verificar" id="btnBurnContract" class="btn btn-outline">Ver contrato de quema</a>
+      <a href="https://pump.fun/coin/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump" id="btnBuy" class="btn btn-primary" target="_blank" rel="noopener">Buy on pump.fun ↗</a>
+      <a href="#verify" id="btnBurnContract" class="btn btn-outline">View burn contract</a>
     </div>
 
     <div class="gauge-card">
@@ -209,30 +209,30 @@
           </svg>
           <div class="kiln-pct">
             <div class="num" id="pctNum">0%</div>
-            <div class="lbl">SUPPLY QUEMADO</div>
+            <div class="lbl">SUPPLY BURNED</div>
           </div>
         </div>
 
         <div>
           <div class="stat-row">
             <div class="stat">
-              <div class="val" id="dayVal">Día 1 / 126</div>
-              <div class="lbl">progreso del calendario</div>
+              <div class="val" id="dayVal">Day 1 / 126</div>
+              <div class="lbl">schedule progress</div>
             </div>
             <div class="stat">
               <div class="val" id="burnedVal">0</div>
-              <div class="lbl">tokens quemados hasta hoy</div>
+              <div class="lbl">tokens burned so far</div>
             </div>
             <div class="stat">
-              <div class="val" id="dailyVal">2.000.000</div>
-              <div class="lbl">se queman hoy, automático</div>
+              <div class="val" id="dailyVal">2,000,000</div>
+              <div class="lbl">burning today, automatic</div>
             </div>
           </div>
           <div class="progressbar"><i id="progressFill"></i></div>
           <div class="day-strip">
-            <span>Estado: <b id="modeLabel">cargando…</b></span>
-            <span>Próxima quema: <b id="nextBurn">—</b></span>
-            <span>Fin programado: <b id="endDay">día 262</b></span>
+            <span>Status: <b id="modeLabel">loading…</b></span>
+            <span>Next burn: <b id="nextBurn">—</b></span>
+            <span>Scheduled end: <b id="endDay">day 126</b></span>
           </div>
         </div>
       </div>
@@ -241,29 +241,29 @@
   <p id="dataUpdatedNote" style="text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ash); margin-top:14px;"></p>
 </header>
 
-<section id="como-funciona">
+<section id="how-it-works">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-tag">Cómo funciona</div>
-      <h2>Nada depende de nuestra palabra</h2>
-      <p class="section-desc">Cuatro pasos, todos verificables por cualquiera en la blockchain de Solana. No hay reparto discrecional ni promesas: el contrato hace exactamente lo que dice, y ni el equipo puede cambiarlo después de desplegado.</p>
+      <div class="section-tag">How it works</div>
+      <h2>Nothing depends on our word</h2>
+      <p class="section-desc">Four steps, all verifiable by anyone on the Solana blockchain. There's no discretionary distribution or promises: the contract does exactly what it says, and not even the team can change it after deployment.</p>
     </div>
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <div><h3>Compra inicial en pump.fun</h3><p>El creador compra un porcentaje del supply en el lanzamiento, igual que cualquier otro comprador — no hay asignación gratuita ni preventa oculta.</p></div>
+        <div><h3>Initial buy on pump.fun</h3><p>The creator buys a percentage of the supply at launch, just like any other buyer — no free allocation, no hidden presale.</p></div>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <div><h3>Bloqueo en un contrato público</h3><p>La parte destinada a quema se deposita en un contrato de liberación programada (Streamflow), marcado como no cancelable y no revocable desde el minuto uno.</p></div>
+        <div><h3>Locked in a public contract</h3><p>The portion earmarked for burning is deposited into a scheduled-release contract (Streamflow), marked as non-cancelable and non-revocable from minute one.</p></div>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <div><h3>Liberación diaria automática</h3><p>Cada día, sin intervención humana, el contrato libera 1.000.000 de tokens directos a una dirección de quema reconocida. No hay botón que apretar ni decisión que tomar.</p></div>
+        <div><h3>Automatic daily release</h3><p>Every day, with no human intervention, the contract releases 2,000,000 tokens directly to a recognized burn address. There's no button to press, no decision to make.</p></div>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <div><h3>Reducción de supply, para siempre</h3><p>Esos tokens salen de circulación de forma permanente. Durante 126 días, cada quema es pública, con su hash de transacción visible en el momento en que ocurre.</p></div>
+        <div><h3>Supply reduction, forever</h3><p>Those tokens leave circulation permanently. Over 126 days, every burn is public, with its transaction hash visible the moment it happens.</p></div>
       </div>
     </div>
   </div>
@@ -273,8 +273,8 @@
   <div class="wrap">
     <div class="section-head">
       <div class="section-tag">Tokenomics</div>
-      <h2>Reparto del supply</h2>
-      <p class="section-desc">Sobre un total de 1.000.000.000 de tokens. Nada oculto, nada añadido después del lanzamiento.</p>
+      <h2>Supply breakdown</h2>
+      <p class="section-desc">Out of a total of 1,000,000,000 tokens. Nothing hidden, nothing added after launch.</p>
     </div>
     <div class="tokenomics">
       <div class="donut-wrap">
@@ -287,70 +287,70 @@
           <circle cx="130" cy="130" r="100" fill="none" stroke="#FFB627" stroke-width="34"
                   stroke-dasharray="31.6 632" stroke-dashoffset="-600.4" transform="rotate(-90 130 130)"/>
           <text x="130" y="124" text-anchor="middle" fill="#efe8dd" font-family="Archivo Black" font-size="30">25%</text>
-          <text x="130" y="148" text-anchor="middle" fill="#8a8177" font-family="IBM Plex Mono" font-size="11">EN QUEMA</text>
+          <text x="130" y="148" text-anchor="middle" fill="#8a8177" font-family="IBM Plex Mono" font-size="11">BURNING</text>
         </svg>
       </div>
       <div class="legend">
         <div class="legend-item">
           <div class="swatch" style="background:#FFB627"></div>
-          <div><div class="name">Creador</div><div class="desc">En vesting, no vendible de golpe</div></div>
+          <div><div class="name">Creator</div><div class="desc">Vesting, can't be sold all at once</div></div>
           <div class="pct">5%</div>
         </div>
         <div class="legend-item">
           <div class="swatch" style="background:#FF6A2B"></div>
-          <div><div class="name">Quema programada</div><div class="desc">2M/día · 126 días · Streamflow</div></div>
-          <div class="pct">25,2%</div>
+          <div><div class="name">Scheduled burn</div><div class="desc">2M/day · 126 days · Streamflow</div></div>
+          <div class="pct">25.2%</div>
         </div>
         <div class="legend-item">
           <div class="swatch" style="background:#5c534a"></div>
-          <div><div class="name">Mercado</div><div class="desc">Curva de bonding, liquidez, holders</div></div>
-          <div class="pct">69,8%</div>
+          <div><div class="name">Market</div><div class="desc">Bonding curve, liquidity, holders</div></div>
+          <div class="pct">69.8%</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="verificar">
+<section id="verify">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-tag">Transparencia</div>
-      <h2>No nos creas. Compruébalo.</h2>
-      <p class="section-desc">Tres clics, tres fuentes independientes. Todo lo que decimos arriba tiene que poder verse aquí abajo.</p>
+      <div class="section-tag">Transparency</div>
+      <h2>Don't trust us. Verify it.</h2>
+      <p class="section-desc">Three clicks, three independent sources. Everything we say above has to be checkable down here.</p>
     </div>
     <div class="verify-grid">
       <div class="verify-card">
         <svg class="vc-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#FF6A2B" stroke-width="1.6"/><path d="M8 12l2.5 2.5L16 9" stroke="#FF6A2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h3>Contrato de quema</h3>
-        <p>El lock de Streamflow con la fecha de inicio, la cantidad diaria y la fecha de fin. No cancelable.</p>
+        <h3>Burn contract</h3>
+        <p>The Streamflow lock with the start date, daily amount, and end date. Non-cancelable.</p>
         <a href="https://app.streamflow.finance/contract/solana/mainnet/DsrrWjhqVfPyY9D2QnmL1agNSsjm7MrwhKmvScGzoSWi" id="linkStreamflow" target="_blank" rel="noopener">app.streamflow.finance/contract/…</a>
       </div>
       <div class="verify-card">
         <svg class="vc-icon" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4v16" stroke="#FF6A2B" stroke-width="1.6" stroke-linecap="round"/></svg>
-        <h3>Movimientos on-chain</h3>
-        <p>Cada quema diaria, con su hash de transacción, visible en el explorador de Solana en tiempo real.</p>
+        <h3>On-chain movements</h3>
+        <p>Every daily burn, with its transaction hash, visible on the Solana explorer in real time.</p>
         <a href="https://solscan.io/token/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump" id="linkSolscan" target="_blank" rel="noopener">solscan.io/token/…</a>
       </div>
       <div class="verify-card">
         <svg class="vc-icon" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke="#FF6A2B" stroke-width="1.6" stroke-linejoin="round"/></svg>
-        <h3>Auditoría automática</h3>
-        <p>Mint y freeze authority revocadas, liquidez quemada al graduar, distribución de holders sin concentración anómala.</p>
+        <h3>Automated audit</h3>
+        <p>Mint and freeze authority revoked, liquidity burned at graduation, holder distribution with no anomalous concentration.</p>
         <a href="https://rugcheck.xyz/tokens/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump" id="linkRugcheck" target="_blank" rel="noopener">rugcheck.xyz/tokens/…</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="riesgos">
+<section id="risks">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-tag">Antes de comprar</div>
-      <h2>Sé claro contigo mismo</h2>
+      <div class="section-tag">Before you buy</div>
+      <h2>Be clear with yourself</h2>
     </div>
     <div class="risk-box">
-      <h3>⚠ ESTO ES UN ACTIVO ESPECULATIVO, NO UN PRODUCTO DE INVERSIÓN</h3>
-      <p>$DBURN es un memecoin en Solana. No representa participación en ninguna empresa, no genera rendimiento garantizado y su valor puede caer a cero. La mecánica de quema reduce el supply, pero no puede garantizar ni predecir el precio.</p>
-      <p>Nadie de este proyecto ofrece asesoramiento financiero. Compra únicamente con dinero que puedas permitirte perder por completo, y decide con tu propio criterio.</p>
+      <h3>⚠ THIS IS A SPECULATIVE ASSET, NOT AN INVESTMENT PRODUCT</h3>
+      <p>$DBURN is a memecoin on Solana. It does not represent equity in any company, does not generate guaranteed returns, and its value can fall to zero. The burn mechanism reduces supply, but it cannot guarantee or predict price.</p>
+      <p>No one from this project offers financial advice. Only buy with money you can afford to lose entirely, and decide using your own judgment.</p>
     </div>
   </div>
 </section>
@@ -369,42 +369,42 @@
       <svg viewBox="0 0 64 64" width="40" height="40"><use href="#logoMark"/></svg>
       <svg viewBox="0 0 64 64" width="64" height="64"><use href="#logoMark"/></svg>
     </div>
-    <p>$DBURN no está afiliado a Anthropic ni a Solana Labs. Datos de la maqueta con fines ilustrativos.</p>
+    <p>$DBURN is not affiliated with any exchange, wallet provider, or platform mentioned above.</p>
   </div>
 </footer>
 
 <script>
 (function () {
-  const GAUGE_CIRCUMFERENCE = 540.4; // 2 * PI * 86 (radio del anillo)
+  const GAUGE_CIRCUMFERENCE = 540.4; // 2 * PI * 86 (ring radius)
 
   function fmt(n) {
-    return Number(n).toLocaleString('es-ES');
+    return Number(n).toLocaleString('en-US');
   }
 
   function relTimeUntil(iso) {
     if (!iso) return '—';
     const diffMs = new Date(iso).getTime() - Date.now();
-    if (diffMs <= 0) return 'de un momento a otro';
+    if (diffMs <= 0) return 'any moment now';
     const h = Math.floor(diffMs / 3600000);
     const m = Math.floor((diffMs % 3600000) / 60000);
-    return `en ${h}h ${m}m`;
+    return `in ${h}h ${m}m`;
   }
 
   async function loadBurnStatus() {
     try {
-      // Ruta relativa: funciona en GitHub Pages / cualquier hosting
-      // donde data/burn-status.json viva junto a esta página.
-      // Se añade un parámetro anti-caché para no ver datos viejos.
+      // Relative path: works on GitHub Pages / any hosting
+      // where data/burn-status.json lives alongside this page.
+      // An anti-cache parameter is added to avoid stale data.
       const res = await fetch('data/burn-status.json?_=' + Date.now());
-      if (!res.ok) throw new Error('No se pudo leer data/burn-status.json');
+      if (!res.ok) throw new Error('Could not read data/burn-status.json');
       const data = await res.json();
       applyData(data);
     } catch (err) {
-      console.warn('Dashboard en modo estático (sin conexión a data/burn-status.json):', err.message);
+      console.warn('Dashboard in static mode (no connection to data/burn-status.json):', err.message);
       const note = document.getElementById('dataUpdatedNote');
-      if (note) note.textContent = 'Vista previa estática — conecta el bot para ver datos en vivo.';
+      if (note) note.textContent = 'Static preview — connect the bot to see live data.';
       const modeLabel = document.getElementById('modeLabel');
-      if (modeLabel) modeLabel.textContent = 'maqueta';
+      if (modeLabel) modeLabel.textContent = 'demo';
     }
   }
 
@@ -425,22 +425,22 @@
     const btnBuy = document.getElementById('btnBuy');
 
     if (pctNum) pctNum.textContent = data.burned_percent + '%';
-    if (dayVal) dayVal.textContent = `Día ${data.day_number} / ${data.total_days}`;
+    if (dayVal) dayVal.textContent = `Day ${data.day_number} / ${data.total_days}`;
     if (burnedVal) burnedVal.textContent = fmt(data.burned_so_far);
     if (dailyVal) dailyVal.textContent = fmt(data.daily_burn_amount);
-    if (endDay) endDay.textContent = `día ${data.total_days}`;
+    if (endDay) endDay.textContent = `day ${data.total_days}`;
     if (nextBurn) nextBurn.textContent = relTimeUntil(data.next_release_at);
     if (progressFill) progressFill.style.width = Math.min(100, data.burned_percent) + '%';
     if (gaugeRing) {
       const offset = GAUGE_CIRCUMFERENCE * (1 - Math.min(100, data.burned_percent) / 100);
       gaugeRing.style.strokeDashoffset = offset;
     }
-    if (modeLabel) modeLabel.textContent = data.mode === 'real' ? 'en vivo · on-chain' : 'demo';
+    if (modeLabel) modeLabel.textContent = data.mode === 'real' ? 'live · on-chain' : 'demo';
     if (dataUpdatedNote) {
-      const when = new Date(data.updated_at).toLocaleString('es-ES');
+      const when = new Date(data.updated_at).toLocaleString('en-US');
       dataUpdatedNote.textContent = data.mode === 'real'
-        ? `Datos on-chain actualizados: ${when}`
-        : `Datos de ejemplo (${when}) — el bot aún no está conectado a un contrato real.`;
+        ? `On-chain data updated: ${when}`
+        : `Demo data (${when}) — the bot isn't connected to a real contract yet.`;
     }
     if (data.explorer_links) {
       if (btnBurnContract && data.explorer_links.streamflow) btnBurnContract.href = data.explorer_links.streamflow;
@@ -453,7 +453,7 @@
   }
 
   loadBurnStatus();
-  // Refresco automático cada 5 minutos mientras la pestaña esté abierta
+  // Auto-refresh every 5 minutes while the tab is open
   setInterval(loadBurnStatus, 5 * 60 * 1000);
 })();
 </script>
