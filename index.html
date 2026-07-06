@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$DBURN — DAILYBURN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --char:#161210;
+    --char-2:#1f1a17;
+    --ember:#ff6a2b;
+    --ember-hot:#ffb627;
+    --ash:#8a8177;
+    --ash-light:#c9c1b6;
+    --paper:#efe8dd;
+    --danger:#c1121f;
+    --line: rgba(239,232,221,0.10);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{background:var(--char); color:var(--paper); font-family:'IBM Plex Sans', sans-serif; scroll-behavior:smooth;}
+  ::selection{background:var(--ember); color:var(--char);}
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:50; background:rgba(22,18,16,0.88); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:76px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Archivo Black', sans-serif; font-size:18px; letter-spacing:0.5px;}
+  .brand svg{width:44px; height:44px;}
+  .ticker-pill{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ember-hot); border:1px solid rgba(255,106,43,0.4); padding:3px 9px; border-radius:20px; margin-left:6px;}
+  .navlinks{display:flex; gap:28px; font-size:14px; color:var(--ash-light);}
+  .navlinks a{color:var(--ash-light); text-decoration:none; transition:color .2s;}
+  .navlinks a:hover{color:var(--ember-hot);}
+  @media(max-width:640px){.navlinks{display:none;}}
+
+  /* HERO */
+  .hero{padding:88px 0 60px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%);
+    width:900px; height:500px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,106,43,0.18), transparent 65%);
+    pointer-events:none;
+  }
+  .logo-hero{display:flex; flex-direction:column; align-items:center; gap:14px; margin-bottom:44px;}
+  .logo-hero-icon{width:132px; height:132px; filter:drop-shadow(0 0 40px rgba(255,106,43,0.5)) drop-shadow(0 0 90px rgba(255,106,43,0.25)); animation:flicker 3.2s ease-in-out infinite;}
+  @keyframes flicker{0%,100%{filter:drop-shadow(0 0 40px rgba(255,106,43,0.5)) drop-shadow(0 0 90px rgba(255,106,43,0.25));} 50%{filter:drop-shadow(0 0 52px rgba(255,138,64,0.65)) drop-shadow(0 0 110px rgba(255,106,43,0.35));}}
+  .logo-hero-word{font-family:'Archivo Black', sans-serif; font-size:clamp(28px,4.5vw,46px); letter-spacing:1px; color:var(--paper); display:flex; align-items:center; gap:14px;}
+  .logo-hero-word span{font-family:'IBM Plex Mono', monospace; font-size:15px; font-weight:600; color:var(--ember-hot); border:1px solid rgba(255,182,39,0.4); padding:5px 12px; border-radius:20px; letter-spacing:0.5px;}
+  @media(max-width:520px){.logo-hero-word{flex-direction:column; gap:8px;}}
+
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:2px; color:var(--ember); text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:8px; justify-content:center;}
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--ember); box-shadow:0 0 10px var(--ember); animation:pulse 1.6s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:.35;}}
+
+  h1.hero-title{
+    font-family:'Archivo Black', sans-serif;
+    font-size:clamp(38px, 7vw, 74px);
+    line-height:0.98; letter-spacing:-1px;
+    color:var(--paper);
+    margin:0 auto 22px;
+    max-width:800px;
+    text-align:center;
+  }
+  h1.hero-title span{color:var(--ember);}
+  .hero-sub{font-size:17px; color:var(--ash-light); max-width:560px; line-height:1.6; margin:0 auto 36px; text-align:center;}
+
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:60px; justify-content:center;}
+  .btn{font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:600; letter-spacing:0.5px; padding:14px 22px; border-radius:6px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .15s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--ember); color:#161210;}
+  .btn-primary:hover{box-shadow:0 8px 24px rgba(255,106,43,0.35);}
+  .btn-outline{border:1px solid var(--line); color:var(--paper);}
+  .btn-outline:hover{border-color:var(--ember-hot); color:var(--ember-hot);}
+
+  /* GAUGE - signature element */
+  .gauge-card{
+    border:1px solid var(--line); background:linear-gradient(180deg, var(--char-2), var(--char));
+    border-radius:14px; padding:32px; position:relative; overflow:hidden;
+  }
+  .gauge-grid{display:grid; grid-template-columns:220px 1fr; gap:36px; align-items:center;}
+  @media(max-width:720px){.gauge-grid{grid-template-columns:1fr; text-align:center;}}
+
+  .kiln{position:relative; width:200px; height:200px; margin:0 auto;}
+  .kiln svg{width:100%; height:100%;}
+  .kiln-pct{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+  .kiln-pct .num{font-family:'Archivo Black', sans-serif; font-size:34px; color:var(--ember-hot);}
+  .kiln-pct .lbl{font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--ash); letter-spacing:1.5px; margin-top:2px;}
+
+  .stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-radius:10px; overflow:hidden; margin-top:24px;}
+  .stat{background:var(--char); padding:18px 16px;}
+  .stat .val{font-family:'IBM Plex Mono', monospace; font-size:22px; font-weight:600; color:var(--paper);}
+  .stat .lbl{font-size:11px; color:var(--ash); margin-top:4px; letter-spacing:0.3px;}
+  @media(max-width:520px){.stat-row{grid-template-columns:1fr;}}
+
+  .day-strip{margin-top:20px; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ash-light); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+  .day-strip b{color:var(--ember-hot);}
+  .progressbar{height:6px; background:var(--line); border-radius:6px; margin:10px 0 4px; overflow:hidden;}
+  .progressbar i{display:block; height:100%; width:31%; background:linear-gradient(90deg, var(--danger), var(--ember), var(--ember-hot)); border-radius:6px;}
+
+  /* SECTION GENERIC */
+  section{padding:80px 0; border-top:1px solid var(--line);}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-tag{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:2px; color:var(--ember); text-transform:uppercase; margin-bottom:14px;}
+  h2{font-family:'Archivo Black', sans-serif; font-size:clamp(26px,4vw,38px); letter-spacing:-0.5px; margin-bottom:14px;}
+  .section-desc{color:var(--ash-light); line-height:1.7; font-size:15.5px;}
+
+  /* HOW IT WORKS - real sequence, numbering justified */
+  .steps{display:grid; gap:0;}
+  .step{display:grid; grid-template-columns:64px 1fr; gap:22px; padding:26px 0; border-top:1px solid var(--line);}
+  .step:first-child{border-top:none;}
+  .step-num{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ember); padding-top:3px;}
+  .step h3{font-size:17px; margin-bottom:6px; color:var(--paper);}
+  .step p{color:var(--ash-light); font-size:14.5px; line-height:1.65;}
+
+  /* TOKENOMICS */
+  .tokenomics{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
+  @media(max-width:800px){.tokenomics{grid-template-columns:1fr;}}
+  .donut-wrap{display:flex; justify-content:center;}
+  .legend{display:flex; flex-direction:column; gap:16px;}
+  .legend-item{display:flex; align-items:center; gap:12px; padding:14px 16px; border:1px solid var(--line); border-radius:10px;}
+  .swatch{width:14px; height:14px; border-radius:4px; flex-shrink:0;}
+  .legend-item .name{font-weight:600; font-size:14.5px;}
+  .legend-item .desc{font-size:13px; color:var(--ash); margin-top:2px;}
+  .legend-item .pct{margin-left:auto; font-family:'IBM Plex Mono', monospace; font-weight:600; color:var(--ember-hot); font-size:16px;}
+
+  /* TRANSPARENCY LINKS */
+  .verify-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media(max-width:760px){.verify-grid{grid-template-columns:1fr;}}
+  .verify-card{border:1px solid var(--line); border-radius:12px; padding:22px; transition:border-color .2s, transform .2s;}
+  .verify-card:hover{border-color:rgba(255,106,43,0.4); transform:translateY(-3px);}
+  .verify-card .vc-icon{width:34px; height:34px; margin-bottom:14px;}
+  .verify-card h3{font-size:15.5px; margin-bottom:6px;}
+  .verify-card p{font-size:13px; color:var(--ash); line-height:1.55; margin-bottom:14px;}
+  .verify-card a{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ember-hot); text-decoration:none; border-bottom:1px solid rgba(255,182,39,0.4);}
+
+  /* RISK */
+  .risk-box{border:1px solid rgba(193,18,31,0.35); background:rgba(193,18,31,0.06); border-radius:12px; padding:26px 28px;}
+  .risk-box h3{font-size:15px; color:#ff8a7a; margin-bottom:10px; font-family:'IBM Plex Mono', monospace; letter-spacing:0.5px;}
+  .risk-box p{font-size:14px; color:var(--ash-light); line-height:1.7;}
+  .risk-box p + p{margin-top:10px;}
+
+  footer{padding:40px 0 60px; text-align:center;}
+  footer p{color:var(--ash); font-size:12.5px; font-family:'IBM Plex Mono', monospace;}
+  footer .brand{justify-content:center; margin-bottom:14px;}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;" aria-hidden="true">
+  <defs>
+    <g id="logoMark">
+      <path d="M14 55 C12 42 17 30 23 18 C26 30 27 40 23 50 C28 46 31 40 30 33 C35 42 35 52 29 58 C23 61 16 60 14 55 Z" fill="url(#flameBack)"/>
+      <path d="M19 58 C15 41 19 27 30 5 C33 22 36 30 32 40 C39 33 42 24 41 14 C50 24 53 39 46 50 C40 58 28 62 19 58 Z" fill="url(#flameMain)"/>
+      <path d="M28 51 C26 41 29 33 34 25 C36 34 37 39 34 44 C39 39 41 32 40 25 C45 33 46 42 41 48 C37 52 32 53 28 51 Z" fill="url(#flameCore)"/>
+    </g>
+    <linearGradient id="flameBack" x1="22" y1="18" x2="22" y2="60" gradientUnits="userSpaceOnUse"><stop stop-color="#FF6A2B"/><stop offset="1" stop-color="#8C0F1A"/></linearGradient>
+    <linearGradient id="flameMain" x1="34" y1="5" x2="34" y2="62" gradientUnits="userSpaceOnUse"><stop stop-color="#FFB627"/><stop offset="0.55" stop-color="#FF6A2B"/><stop offset="1" stop-color="#C1121F"/></linearGradient>
+    <linearGradient id="flameCore" x1="37" y1="25" x2="37" y2="53" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFBEA"/><stop offset="1" stop-color="#FFB627"/></linearGradient>
+  </defs>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 64 64" style="filter:drop-shadow(0 0 10px rgba(255,106,43,0.5));"><use href="#logoMark"/></svg>
+      DAILYBURN <span class="ticker-pill">$DBURN</span>
+    </div>
+    <div class="navlinks">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#verificar">Verificar</a>
+      <a href="#riesgos">Riesgos</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="logo-hero">
+      <svg viewBox="0 0 64 64" class="logo-hero-icon"><use href="#logoMark"/></svg>
+      <div class="logo-hero-word">DAILYBURN<span>$DBURN</span></div>
+    </div>
+    <div class="eyebrow"><span class="dot"></span> EN VIVO EN SOLANA · PUMP.FUN</div>
+    <h1 class="hero-title">Un millón de tokens.<br>Quemados. <span>Cada día.</span></h1>
+    <p class="hero-sub">126 días de quema diaria automática, bloqueada en un contrato público que nadie puede pausar, cambiar ni cancelar. Ni siquiera el creador. Compruébalo tú mismo, no confíes en nuestra palabra.</p>
+    <div class="cta-row">
+      <a href="https://pump.fun/coin/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump" id="btnBuy" class="btn btn-primary" target="_blank" rel="noopener">Comprar en pump.fun ↗</a>
+      <a href="#verificar" id="btnBurnContract" class="btn btn-outline">Ver contrato de quema</a>
+    </div>
+
+    <div class="gauge-card">
+      <div class="gauge-grid">
+        <div class="kiln">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="86" stroke="rgba(239,232,221,0.08)" stroke-width="14" fill="none"/>
+            <circle id="gaugeRing" cx="100" cy="100" r="86" stroke="url(#gaugeGrad)" stroke-width="14" fill="none"
+                    stroke-dasharray="540.4" stroke-dashoffset="372.9" stroke-linecap="round"
+                    transform="rotate(-90 100 100)"/>
+            <defs>
+              <linearGradient id="gaugeGrad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#C1121F"/>
+                <stop offset="0.5" stop-color="#FF6A2B"/>
+                <stop offset="1" stop-color="#FFB627"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="kiln-pct">
+            <div class="num" id="pctNum">0%</div>
+            <div class="lbl">SUPPLY QUEMADO</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="stat-row">
+            <div class="stat">
+              <div class="val" id="dayVal">Día 1 / 126</div>
+              <div class="lbl">progreso del calendario</div>
+            </div>
+            <div class="stat">
+              <div class="val" id="burnedVal">0</div>
+              <div class="lbl">tokens quemados hasta hoy</div>
+            </div>
+            <div class="stat">
+              <div class="val" id="dailyVal">2.000.000</div>
+              <div class="lbl">se queman hoy, automático</div>
+            </div>
+          </div>
+          <div class="progressbar"><i id="progressFill"></i></div>
+          <div class="day-strip">
+            <span>Estado: <b id="modeLabel">cargando…</b></span>
+            <span>Próxima quema: <b id="nextBurn">—</b></span>
+            <span>Fin programado: <b id="endDay">día 262</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p id="dataUpdatedNote" style="text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ash); margin-top:14px;"></p>
+</header>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">Cómo funciona</div>
+      <h2>Nada depende de nuestra palabra</h2>
+      <p class="section-desc">Cuatro pasos, todos verificables por cualquiera en la blockchain de Solana. No hay reparto discrecional ni promesas: el contrato hace exactamente lo que dice, y ni el equipo puede cambiarlo después de desplegado.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div><h3>Compra inicial en pump.fun</h3><p>El creador compra un porcentaje del supply en el lanzamiento, igual que cualquier otro comprador — no hay asignación gratuita ni preventa oculta.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div><h3>Bloqueo en un contrato público</h3><p>La parte destinada a quema se deposita en un contrato de liberación programada (Streamflow), marcado como no cancelable y no revocable desde el minuto uno.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div><h3>Liberación diaria automática</h3><p>Cada día, sin intervención humana, el contrato libera 1.000.000 de tokens directos a una dirección de quema reconocida. No hay botón que apretar ni decisión que tomar.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div><h3>Reducción de supply, para siempre</h3><p>Esos tokens salen de circulación de forma permanente. Durante 126 días, cada quema es pública, con su hash de transacción visible en el momento en que ocurre.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tokenomics">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">Tokenomics</div>
+      <h2>Reparto del supply</h2>
+      <p class="section-desc">Sobre un total de 1.000.000.000 de tokens. Nada oculto, nada añadido después del lanzamiento.</p>
+    </div>
+    <div class="tokenomics">
+      <div class="donut-wrap">
+        <svg width="260" height="260" viewBox="0 0 260 260">
+          <circle cx="130" cy="130" r="100" fill="none" stroke="#2a2320" stroke-width="34"/>
+          <circle cx="130" cy="130" r="100" fill="none" stroke="#FF6A2B" stroke-width="34"
+                  stroke-dasharray="159.3 632" stroke-dashoffset="0" transform="rotate(-90 130 130)"/>
+          <circle cx="130" cy="130" r="100" fill="none" stroke="#5c534a" stroke-width="34"
+                  stroke-dasharray="441.1 632" stroke-dashoffset="-159.3" transform="rotate(-90 130 130)"/>
+          <circle cx="130" cy="130" r="100" fill="none" stroke="#FFB627" stroke-width="34"
+                  stroke-dasharray="31.6 632" stroke-dashoffset="-600.4" transform="rotate(-90 130 130)"/>
+          <text x="130" y="124" text-anchor="middle" fill="#efe8dd" font-family="Archivo Black" font-size="30">25%</text>
+          <text x="130" y="148" text-anchor="middle" fill="#8a8177" font-family="IBM Plex Mono" font-size="11">EN QUEMA</text>
+        </svg>
+      </div>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="swatch" style="background:#FFB627"></div>
+          <div><div class="name">Creador</div><div class="desc">En vesting, no vendible de golpe</div></div>
+          <div class="pct">5%</div>
+        </div>
+        <div class="legend-item">
+          <div class="swatch" style="background:#FF6A2B"></div>
+          <div><div class="name">Quema programada</div><div class="desc">2M/día · 126 días · Streamflow</div></div>
+          <div class="pct">25,2%</div>
+        </div>
+        <div class="legend-item">
+          <div class="swatch" style="background:#5c534a"></div>
+          <div><div class="name">Mercado</div><div class="desc">Curva de bonding, liquidez, holders</div></div>
+          <div class="pct">69,8%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="verificar">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">Transparencia</div>
+      <h2>No nos creas. Compruébalo.</h2>
+      <p class="section-desc">Tres clics, tres fuentes independientes. Todo lo que decimos arriba tiene que poder verse aquí abajo.</p>
+    </div>
+    <div class="verify-grid">
+      <div class="verify-card">
+        <svg class="vc-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#FF6A2B" stroke-width="1.6"/><path d="M8 12l2.5 2.5L16 9" stroke="#FF6A2B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Contrato de quema</h3>
+        <p>El lock de Streamflow con la fecha de inicio, la cantidad diaria y la fecha de fin. No cancelable.</p>
+        <a href="https://app.streamflow.finance/contract/solana/mainnet/DsrrWjhqVfPyY9D2QnmL1agNSsjm7MrwhKmvScGzoSWi" id="linkStreamflow" target="_blank" rel="noopener">app.streamflow.finance/contract/…</a>
+      </div>
+      <div class="verify-card">
+        <svg class="vc-icon" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M12 4v16" stroke="#FF6A2B" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <h3>Movimientos on-chain</h3>
+        <p>Cada quema diaria, con su hash de transacción, visible en el explorador de Solana en tiempo real.</p>
+        <a href="https://solscan.io/token/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump" id="linkSolscan" target="_blank" rel="noopener">solscan.io/token/…</a>
+      </div>
+      <div class="verify-card">
+        <svg class="vc-icon" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke="#FF6A2B" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <h3>Auditoría automática</h3>
+        <p>Mint y freeze authority revocadas, liquidez quemada al graduar, distribución de holders sin concentración anómala.</p>
+        <a href="https://rugcheck.xyz/tokens/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump" id="linkRugcheck" target="_blank" rel="noopener">rugcheck.xyz/tokens/…</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="riesgos">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">Antes de comprar</div>
+      <h2>Sé claro contigo mismo</h2>
+    </div>
+    <div class="risk-box">
+      <h3>⚠ ESTO ES UN ACTIVO ESPECULATIVO, NO UN PRODUCTO DE INVERSIÓN</h3>
+      <p>$DBURN es un memecoin en Solana. No representa participación en ninguna empresa, no genera rendimiento garantizado y su valor puede caer a cero. La mecánica de quema reduce el supply, pero no puede garantizar ni predecir el precio.</p>
+      <p>Nadie de este proyecto ofrece asesoramiento financiero. Compra únicamente con dinero que puedas permitirte perder por completo, y decide con tu propio criterio.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="display:flex; justify-content:center;">
+      <svg viewBox="0 0 64 64" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <use href="#logoMark"/>
+      </svg>
+      &nbsp; DAILYBURN
+    </div>
+    <div style="display:flex; justify-content:center; align-items:center; gap:18px; margin:20px 0 26px; opacity:0.9;">
+      <svg viewBox="0 0 64 64" width="16" height="16"><use href="#logoMark"/></svg>
+      <svg viewBox="0 0 64 64" width="24" height="24"><use href="#logoMark"/></svg>
+      <svg viewBox="0 0 64 64" width="40" height="40"><use href="#logoMark"/></svg>
+      <svg viewBox="0 0 64 64" width="64" height="64"><use href="#logoMark"/></svg>
+    </div>
+    <p>$DBURN no está afiliado a Anthropic ni a Solana Labs. Datos de la maqueta con fines ilustrativos.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const GAUGE_CIRCUMFERENCE = 540.4; // 2 * PI * 86 (radio del anillo)
+
+  function fmt(n) {
+    return Number(n).toLocaleString('es-ES');
+  }
+
+  function relTimeUntil(iso) {
+    if (!iso) return '—';
+    const diffMs = new Date(iso).getTime() - Date.now();
+    if (diffMs <= 0) return 'de un momento a otro';
+    const h = Math.floor(diffMs / 3600000);
+    const m = Math.floor((diffMs % 3600000) / 60000);
+    return `en ${h}h ${m}m`;
+  }
+
+  async function loadBurnStatus() {
+    try {
+      // Ruta relativa: funciona en GitHub Pages / cualquier hosting
+      // donde data/burn-status.json viva junto a esta página.
+      // Se añade un parámetro anti-caché para no ver datos viejos.
+      const res = await fetch('data/burn-status.json?_=' + Date.now());
+      if (!res.ok) throw new Error('No se pudo leer data/burn-status.json');
+      const data = await res.json();
+      applyData(data);
+    } catch (err) {
+      console.warn('Dashboard en modo estático (sin conexión a data/burn-status.json):', err.message);
+      const note = document.getElementById('dataUpdatedNote');
+      if (note) note.textContent = 'Vista previa estática — conecta el bot para ver datos en vivo.';
+      const modeLabel = document.getElementById('modeLabel');
+      if (modeLabel) modeLabel.textContent = 'maqueta';
+    }
+  }
+
+  function applyData(data) {
+    const pctNum = document.getElementById('pctNum');
+    const dayVal = document.getElementById('dayVal');
+    const burnedVal = document.getElementById('burnedVal');
+    const dailyVal = document.getElementById('dailyVal');
+    const progressFill = document.getElementById('progressFill');
+    const gaugeRing = document.getElementById('gaugeRing');
+    const modeLabel = document.getElementById('modeLabel');
+    const nextBurn = document.getElementById('nextBurn');
+    const endDay = document.getElementById('endDay');
+    const dataUpdatedNote = document.getElementById('dataUpdatedNote');
+    const btnBurnContract = document.getElementById('linkStreamflow');
+    const linkSolscan = document.getElementById('linkSolscan');
+    const linkRugcheck = document.getElementById('linkRugcheck');
+    const btnBuy = document.getElementById('btnBuy');
+
+    if (pctNum) pctNum.textContent = data.burned_percent + '%';
+    if (dayVal) dayVal.textContent = `Día ${data.day_number} / ${data.total_days}`;
+    if (burnedVal) burnedVal.textContent = fmt(data.burned_so_far);
+    if (dailyVal) dailyVal.textContent = fmt(data.daily_burn_amount);
+    if (endDay) endDay.textContent = `día ${data.total_days}`;
+    if (nextBurn) nextBurn.textContent = relTimeUntil(data.next_release_at);
+    if (progressFill) progressFill.style.width = Math.min(100, data.burned_percent) + '%';
+    if (gaugeRing) {
+      const offset = GAUGE_CIRCUMFERENCE * (1 - Math.min(100, data.burned_percent) / 100);
+      gaugeRing.style.strokeDashoffset = offset;
+    }
+    if (modeLabel) modeLabel.textContent = data.mode === 'real' ? 'en vivo · on-chain' : 'demo';
+    if (dataUpdatedNote) {
+      const when = new Date(data.updated_at).toLocaleString('es-ES');
+      dataUpdatedNote.textContent = data.mode === 'real'
+        ? `Datos on-chain actualizados: ${when}`
+        : `Datos de ejemplo (${when}) — el bot aún no está conectado a un contrato real.`;
+    }
+    if (data.explorer_links) {
+      if (btnBurnContract && data.explorer_links.streamflow) btnBurnContract.href = data.explorer_links.streamflow;
+      if (linkSolscan && data.explorer_links.solscan_token) linkSolscan.href = data.explorer_links.solscan_token;
+      if (linkRugcheck && data.explorer_links.rugcheck) linkRugcheck.href = data.explorer_links.rugcheck;
+    }
+    if (btnBuy && data.token_mint) {
+      btnBuy.href = `https://pump.fun/${data.token_mint}`;
+    }
+  }
+
+  loadBurnStatus();
+  // Refresco automático cada 5 minutos mientras la pestaña esté abierta
+  setInterval(loadBurnStatus, 5 * 60 * 1000);
+})();
+</script>
+</body>
+</html>

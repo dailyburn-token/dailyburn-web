@@ -1,0 +1,14 @@
+{
+  "name": "dailyburn-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lee el contrato de Streamflow de $DBURN y actualiza data/burn-status.json",
+  "main": "fetch-burn-status.js",
+  "scripts": {
+    "fetch": "node fetch-burn-status.js"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.95.3",
+    "@streamflow/stream": "^7.3.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "mode": "demo",
+  "updated_at": "2026-07-06T21:23:28.703Z",
+  "note": "Datos de ejemplo: el bot automático (GitHub Actions) todavía no se ha desplegado",
+  "token_mint": "6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump",
+  "contract_id": "DsrrWjhqVfPyY9D2QnmL1agNSsjm7MrwhKmvScGzoSWi",
+  "total_locked_for_burn": 252039030,
+  "burned_so_far": 0,
+  "burned_percent": 0,
+  "day_number": 1,
+  "total_days": 126,
+  "next_release_at": null,
+  "daily_burn_amount": 2000000,
+  "explorer_links": {
+    "streamflow": "https://app.streamflow.finance/contract/solana/mainnet/DsrrWjhqVfPyY9D2QnmL1agNSsjm7MrwhKmvScGzoSWi",
+    "solscan_token": "https://solscan.io/token/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump",
+    "rugcheck": "https://rugcheck.xyz/tokens/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump"
+  }
+}
