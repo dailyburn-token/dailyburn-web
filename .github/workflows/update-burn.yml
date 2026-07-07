@@ -1,0 +1,32 @@
+name: Actualizar datos de quema de $DBURN
+# Se ejecuta solo, sin intervención humana:
+#  - cada hora, automáticamente (cron)
+#  - además, cuando quieras, puedes lanzarlo a mano desde la pestaña
+#    "Actions" de GitHub con el botón "Run workflow" (workflow_dispatch)
+on:
+  schedule:
+    - cron: "0 * * * *" # cada hora, en punto
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  update-burn-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Instalar dependencias del bot
+        working-directory: bot
+        run: npm install
+      - name: Leer el contrato de Streamflow y generar el JSON
+        working-directory: bot
+        run: npm run fetch
+      - name: Publicar los datos actualizados en el repositorio
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: actualizar datos de quema automáticamente"
+          file_pattern: "data/burn-status.json"
