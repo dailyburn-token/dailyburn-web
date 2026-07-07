@@ -72,7 +72,7 @@ async function main() {
 
 async function fetchRealStatus() {
   // AJUSTAR SI CAMBIA EL SDK: import dinámico porque el paquete es ESM
-  const { StreamflowSolana, getBN } = await import("@streamflow/stream");
+  const { StreamflowSolana, getBN } = require("@streamflow/stream");
 
   const client = new StreamflowSolana.SolanaStreamClient(config.RPC_URL);
 
