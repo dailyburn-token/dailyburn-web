@@ -18,7 +18,7 @@ jobs:
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "18"
       - name: Instalar dependencias del bot
         working-directory: bot
         run: npm install
