@@ -67,13 +67,31 @@
   h1.hero-title span{color:var(--ember);}
   .hero-sub{font-size:17px; color:var(--ash-light); max-width:560px; line-height:1.6; margin:0 auto 36px; text-align:center;}
 
-  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:60px; justify-content:center;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:20px; justify-content:center;}
   .btn{font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:600; letter-spacing:0.5px; padding:14px 22px; border-radius:6px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .15s;}
   .btn:hover{transform:translateY(-2px);}
   .btn-primary{background:var(--ember); color:#161210;}
   .btn-primary:hover{box-shadow:0 8px 24px rgba(255,106,43,0.35);}
   .btn-outline{border:1px solid var(--line); color:var(--paper);}
   .btn-outline:hover{border-color:var(--ember-hot); color:var(--ember-hot);}
+
+  /* CONTRACT BOX */
+  .contract-row{display:flex; justify-content:center; margin-bottom:40px;}
+  .contract-box{
+    display:inline-flex; align-items:center; gap:10px; flex-wrap:wrap;
+    justify-content:center; padding:10px 16px;
+    border:1px solid var(--line); border-radius:8px; background:var(--char-2);
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    max-width:100%;
+  }
+  .contract-label{color:var(--ash); letter-spacing:0.5px; flex-shrink:0;}
+  .contract-address{color:var(--ember-hot); word-break:break-all;}
+  .contract-copy{
+    background:none; border:1px solid rgba(255,182,39,0.4); color:var(--ember-hot);
+    font-family:'IBM Plex Mono', monospace; font-size:11px; padding:4px 10px;
+    border-radius:5px; cursor:pointer; transition:background .15s; flex-shrink:0;
+  }
+  .contract-copy:hover{background:rgba(255,182,39,0.1);}
 
   /* GAUGE - signature element */
   .gauge-card{
@@ -107,7 +125,7 @@
   h2{font-family:'Archivo Black', sans-serif; font-size:clamp(26px,4vw,38px); letter-spacing:-0.5px; margin-bottom:14px;}
   .section-desc{color:var(--ash-light); line-height:1.7; font-size:15.5px;}
 
-  /* HOW IT WORKS - real sequence, numbering justified */
+  /* HOW IT WORKS */
   .steps{display:grid; gap:0;}
   .step{display:grid; grid-template-columns:64px 1fr; gap:22px; padding:26px 0; border-top:1px solid var(--line);}
   .step:first-child{border-top:none;}
@@ -192,6 +210,14 @@
     <div class="cta-row">
       <a href="https://pump.fun/coin/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump" id="btnBuy" class="btn btn-primary" target="_blank" rel="noopener">Buy on pump.fun ↗</a>
       <a href="#verify" id="btnBurnContract" class="btn btn-outline">View burn contract</a>
+    </div>
+
+    <div class="contract-row">
+      <div class="contract-box">
+        <span class="contract-label">Contract:</span>
+        <span class="contract-address" id="contractAddress">6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump</span>
+        <button class="contract-copy" id="copyContractBtn" type="button">Copy</button>
+      </div>
     </div>
 
     <div class="gauge-card">
@@ -382,7 +408,7 @@
 
 <script>
 (function () {
-  const GAUGE_CIRCUMFERENCE = 540.4; // 2 * PI * 86 (ring radius)
+  const GAUGE_CIRCUMFERENCE = 540.4;
 
   function fmt(n) {
     return Number(n).toLocaleString('en-US');
@@ -454,6 +480,17 @@
     if (btnBuy && data.token_mint) {
       btnBuy.href = `https://pump.fun/${data.token_mint}`;
     }
+  }
+
+  const copyBtn = document.getElementById('copyContractBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const address = document.getElementById('contractAddress').textContent;
+      navigator.clipboard.writeText(address).then(() => {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
+      });
+    });
   }
 
   loadBurnStatus();
