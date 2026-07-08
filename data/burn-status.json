@@ -1,6 +1,6 @@
 {
   "mode": "real",
-  "updated_at": "2026-07-08T08:13:18.791Z",
+  "updated_at": "2026-07-08T08:40:15.476Z",
   "token_mint": "6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump",
   "contract_id": "DsrrWjhqVfPyY9D2QnmL1agNSsjm7MrwhKmvScGzoSWi",
   "total_locked_for_burn": 252039030,
@@ -12,7 +12,7 @@
   "daily_burn_amount": 2000000,
   "explorer_links": {
     "streamflow": "https://app.streamflow.finance/contract/solana/mainnet/DsrrWjhqVfPyY9D2QnmL1agNSsjm7MrwhKmvScGzoSWi",
-    "solscan_token": "https://solscan.io/token/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump",
+    "solscan_token": "https://solscan.io/account/p27nVPfVv3oJfe7S97NePFWQcz3NvAypm8QqZjc1pBx",
     "rugcheck": "https://rugcheck.xyz/tokens/6P2QzQ6BGNx834ciHhmwQsL4Jq23LrecnASne8gWpump"
   }
 }
