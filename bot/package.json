@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "@solana/web3.js": "^1.95.3",
-    "@streamflow/stream": "^7.3.0"
+    "@streamflow/stream": "^9.0.2"
   }
 }
